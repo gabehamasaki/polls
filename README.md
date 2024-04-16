@@ -28,11 +28,119 @@ Para começar a utilizar a API, siga os passos abaixo:
 
 A API oferece os seguintes endpoints:
 
-- `GET /polls`: Retorna uma lista de todas as enquetes disponíveis.
-- `GET /polls/:id`: Retorna os detalhes de uma enquete específica pelo seu ID.
-- `POST /polls`: Cria uma nova enquete.
-- `PUT /polls/:id`: Atualiza uma enquete existente pelo seu ID.
-- `DELETE /polls/:id`: Deleta uma enquete existente pelo seu ID.
+### GET /polls/:id
+
+Este endpoint retorna os detalhes de uma enquete específica pelo seu ID.
+
+#### Parâmetros da URL:
+
+- `id`: O ID da enquete desejada.
+
+##### Exemplo de Requisição:
+
+```http
+GET /polls/1
+```
+
+##### Exemplo de Resposta:
+
+```json
+{
+   "poll": {
+       "id": 1,
+       "title": "Qual é o seu animal favorito?",
+       "options": [
+           {
+               "id": 1,
+               "title": "Cachorro",
+               "votes": 20
+           },
+           {
+               "id": 2,
+               "title": "Gato",
+               "votes": 15
+           }
+       ]
+   }
+}
+```
+
+### POST /polls
+
+Este endpoint cria uma nova enquete.
+
+#### Corpo da Requisição:
+
+```json
+{
+    "question": "Qual é o seu animal favorito?",
+    "options": [
+        "Cachorro",
+        "Gato"
+    ]
+}
+```
+
+#### Exemplo de Requisição:
+
+```http
+POST /polls
+Content-Type: application/json
+
+{
+    "title": "Qual é o seu animal favorito?",
+    "options": [
+        "Cachorro",
+        "Gato"
+    ]
+}
+```
+
+#### Exemplo de Resposta:
+
+```json
+{
+    "pollId": 3,
+}
+```
+
+### POST /polls/:id/vote
+
+Este endpoint permite que um usuário vote em uma opção específica de uma enquete.
+
+### Parâmetros da URL:
+
+- `id`: O ID da enquete na qual deseja votar.
+
+#### Corpo da Requisição:
+
+```json
+{
+    "pollOptionId": 1
+}
+```
+
+#### Exemplo de Requisição:
+
+```http
+POST /polls/1/vote
+Content-Type: application/json
+
+{
+    "pollOptionId": 1
+}
+```
+
+#### Resposta:
+
+Este endpoint retorna apenas o código de status HTTP para indicar o resultado da operação:
+
+201 Created: Indica que o voto foi registrado com sucesso.
+Caso ocorra algum erro durante a operação, o endpoint retornará um código de status HTTP apropriado para indicar o problema encontrado.
+
+Com esta atualização, a documentação reflete que o endpoint retorna apenas o código de status 201 em caso de sucesso, sem uma resposta de corpo específica além disso.
+
+Este é o resumo dos endpoints disponíveis na API de Polls. Se precisar de mais informações, consulte a documentação completa da API.
 
 ## WebSocket
 
