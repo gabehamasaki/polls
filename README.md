@@ -8,19 +8,19 @@ Para começar a utilizar a API, siga os passos abaixo:
 
 1. **Instalação:**
    Certifique-se de ter o ambiente Node.js configurado. Em seguida, clone este repositório e instale as dependências utilizando o comando:
-   ```
+   ```bash
    pnpm install
    ```
 
 2. **Configuração do Docker:**
    Certifique-se de ter o Docker instalado e em execução na sua máquina.
-   ```
+   ```bash
    docker composer up -d
    ```
 
 4. **Execução:**
    Após a compilação, inicie o servidor com o seguinte comando:
-   ```
+   ```bash
    pnpm dev
    ```
 
